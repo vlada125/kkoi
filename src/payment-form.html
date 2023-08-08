@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <link href="../dist/output.css" rel="stylesheet">
+    <link href="./input.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/fira-sans-book" rel="stylesheet">
+</head>
+
+<body class="font-fira">
+    <!-- Header Start -->
+    <nav class="h-16 bg-primary fixed w-full z-20 top-0 left-0 text-white">
+        <div class="container flex flex-wrap items-center justify-between mx-auto h-16 py-3 px-3 md:px-0">
+            <a href="/" class="flex items-center">
+                <img src="./images/logo-white.svg" class="h-[27px] mr-3" alt="Flowbite Logo">
+            </a>
+            <div class="flex md:order-2">
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden  focus:outline-none "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <img src="./images/icons/hamburger.svg" class="w-5 h-5" alt="">
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:items-center md:w-auto nav-bg"
+                id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium  md:flex-row md:space-x-8 md:mt-0 m gap-4">
+                    <li>
+                        <a href="#" class="text-base font-bold leading-normal" aria-current="page">Trending</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-base font-normal leading-normal">Ad Library</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-base font-normal leading-normal">Saved Ads</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-base font-normal leading-normal">Chrome Extensions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header End -->
+
+    <!-- Main Section Start -->
+    <div class="md:flex h-fit text-black mt-[64px] items-stretch">
+        <!-- SignUp Form -->
+        <div class="md:w-1/2   flex-1">
+            <div class="h-[90px] md:h-full payment-back">
+
+            </div>
+
+            <!-- <img src="./images/signin-back.png" class="h-full w-full object-cover" alt=""> -->
+        </div>
+        <div class="md:w-1/2  px-5 md:px-0 pb-8 md:pb-0 flex-1">
+            <div class="summary-div">
+
+            </div>
+
+            <div class="payment-form">
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Main Section End -->
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.0.1/jquery.payment.min.js"></script>
+
+<script>
+
+
+    var step = 1
+    var mobileSize = false
+    var paymentElement = `  <div class="flex items-center mt-0 md:mt-14">
+                <form action="" class="w-full  md:w-[70%] mx-auto">
+                    <h1 class="text-primary text-2xl font-bold  text-center md:text-left my-8">Payment Information
+                    </h1>
+                    <div class="mb-6">
+                        <label for="cardName" class="block mb-2 font-semibold text-md md:text-lg">Card cardName*</label>
+                        <input type="string" id="cardName"
+                            class=" border border-gray-400 h-12 text-gray-900 focus:outline-none text-md rounded-lg block w-full p-2.5 bg-white"
+                            name="cardName" required placeholder="Jones Smith">
+                    </div>
+                    <div class="mb-6">
+                        <label for="card_info" class="block mb-2 font-semibold text-md md:text-lg">Card
+                            Information*</label>
+                        <div
+                            class="border flex border-gray-400 h-12 text-gray-900 text-md rounded-lg w-full p-2.5 bg-white">
+                            <input type="tel" class="border-none focus:outline-none w-[55%] cc-number"
+                                placeholder="Card Number"  maxlength="19">
+                            <input type="tel" class="border-none focus:outline-none w-[25%] cc-expires"
+                                placeholder="MM/YY">
+                            <input type="tel" class="border-none focus:outline-none w-[20%] cc-cvc"
+                                placeholder="CVC">
+                        </div>
+                    </div>
+                    <div class="md:flex gap-5">
+                        <button type="submit"
+                            class="bg-primary text-white font-extrabold h-12 w-full rounded-md text-lg md:text-xl"> Confirm Payment</button>
+                        <button type="button"
+                            class="flex justify-center mt-4 md:mt-0 items-center border border-primary text-primary font-medium h-12 w-full rounded-md md:text-lg">
+                            Cancel Payment</button>
+                    </div>
+                    <div class="flex justify-center opacity-60 py-8">
+                        <img src="./images/icons/lock.svg" class="mr-2" alt="">
+                        <p class="text-sm font-medium">Your credit card information is encrypted.</p>
+                    </div>
+                </form>
+            </div>`
+    var summaryElement = `<div class="px-3 md:p-6 md:bg-gray-50">
+                <button class="rounded-full shadow-md  p-1 mt-5 md:mt-0"><img src="./images/icons/return-arrow.svg"
+                        alt=""></button>
+                <div class="md:px-14">
+                    <h2 class="text-primary text-2xl font-bold mt-3 text-center md:text-left">Receipt Summary</h2>
+                    <div class="md:flex mt-3 pb-6">
+                        <table class="w-full text-left text-black text-lg">
+                            <tbody>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 1
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $125.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 2
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $12.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 3
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $322.80
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 4
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $25.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 5
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $86.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 6
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $14.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 6
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $10.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 7
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $10.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold">
+                                        Item 8
+                                    </th>
+                                    <td class=" py-1 text-right md:text-left">
+                                        $10.00
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-[60%] md:w-full mx-auto mt-8 md:mt-0 text-left text-black text-lg h-fit">
+                            <tbody>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold italic">
+                                        Discount
+                                    </th>
+                                    <td class=" py-1">
+                                        $0.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold italic">
+                                        Subtotal
+                                    </th>
+                                    <td class=" py-1">
+                                        $125.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-semibold italic">
+                                        Tax
+                                    </th>
+                                    <td class=" py-1">
+                                        $24.00
+                                    </td>
+                                </tr>
+                                <tr class="border-none">
+                                    <th scope="row" class=" py-1 font-bold text-primary text-xl">
+                                        TOTAL
+                                    </th>
+                                    <td class=" py-1 text-primary font-bold text-xl">
+                                        $614.80
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" onclick="gotoStep2()"
+                        class="bg-primary text-white font-extrabold h-12 w-full rounded-md text-lg md:text-xl mt-4 block md:hidden">
+                        Continue</button>
+                </div>
+            </div>`
+
+    $('.summary-div').html(summaryElement)
+    if (window.innerWidth < 920) {
+        mobileSize = true
+        $('.payment-form').html("")
+    } else {
+        $('.payment-form').html(paymentElement)
+
+    }
+
+    const gotoStep2 = () => {
+        step = 2
+        $('.payment-form').html(paymentElement)
+        $('.summary-div').html('')
+        $('.cc-number').formatCardNumber();
+        $('.cc-expires').formatCardExpiry();
+        $('.cc-cvc').formatCardCVC();
+    }
+
+
+
+    if ((mobileSize && step == 1)) {
+        $('.payment-form').html("")
+
+        $('.summary-div').html(summaryElement)
+
+    }
+
+</script>
+
+</html>
